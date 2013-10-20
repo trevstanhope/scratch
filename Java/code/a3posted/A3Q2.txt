@@ -1,0 +1,104 @@
+Trevor Stanhope
+260399515
+Assignment 3, Question 2
+Due Tuesday, November 13th at 23:59
+
+/******************************************************************************/
+m = number of characters in a key
+n = number of keys in an argument set, i.e. for loadKeys(keys)
+N = total nodes in tree
+k = number of children (for non-binary search trees)
+Trie T1 uses arrays for to store child references
+Trie T2 uses linkedlists store child references
+Trie BST uses a binary search tree store child references
+/******************************************************************************/
+
+1. O() of loadKeys(keys) on T1
+    O(nm)
+    This because for each of the 'n' keys, there is a possibility of having to 
+    iterate for each of the 'm' characters in the key since each character 
+    may require a child node to be created for it.
+    
+2. O() of contains(key) on T1
+    O(m)
+    The is because for each of the 'm' characters, the next nodes children must 
+    be checked for the associated index for that character. This requires only
+    one iteration because the children are stored as an index-based array of 
+    branch references, and any index of the array can be called with a single
+    computation.
+    
+3. O() of loadKeys(keys) on T2
+    O(nmk)
+    This is because for each of the 'n' keys in the argument, there is the 
+    possibility of having to compare each of the 'm' characters in the key to 
+    all 'k' children. Unlike Array references to the children, LinkedLists must
+    be checked sequentially, and therefore the process of checking the children
+    might involve comparing the associated character to all of the index
+    references of the children. This would occur if the last child in the list
+    is the desired target, as all of the k - 1 child indexes would need to be 
+    checked first. However, this assumes that there are 'k' children of
+    every node on the tree.
+    
+4. O() of contains(key) on T2
+    O(mk)
+    For each of the 'm' characters in a key, it is possible that all 'k' child 
+    nodes of the parent must be checked for a match. Similar to loadKeys() using 
+    a LinkedList for storing child index references, contains() is dependent
+    on the number of children in a node. However, this assumes that
+    there are 'k' children for all levels of the tree.
+    
+5. O() of loadKeys(keys) on BST
+    O(nmN)
+    For each of the 'n' keys in the set of arguments, it is possible that each 
+    must be compared 'N' times to the children below the root. Here, 'N' is the 
+    maximum path length from the root to any node key in a severely unbalanced
+    binary search tree, i.e. a tree that is all left (see Figure 2) whereas a 
+    well-balanced binary search tree would typically have a maximum path length 
+    of 'log2(N)'. Additionally, each of these comparisons could take 'm' 
+    iterations, where 'm' is the number of characters in the key. This is 
+    because all of the characters of the two keys being compared may be 
+    identical except for the last character (or first character, depending on 
+    the comparison method), such as 'soup' vs. 'soul'.
+     
+6. Omega() of loadKeys(keys) on BST
+    Omega(nlog2(N))
+    For each of the 'n' keys in the set of arguments, the best case scenario is 
+    that it only requires one iteration per comparison between the current node 
+    and its children to determine size, such as the first character comparison
+    being non-equal. For example, comparing 'cat' vs. 'dog' starting at the front
+    of each string requires only one character comparison to determine the 
+    larger key. For the lower bound, this process must be repeated 'log2(N)' times,
+    where 'log2(N)' is the  pathlength of a well-balanced binary
+    search tree (see Figure 1) containing 'N' total nodes.
+    
+7. O() of contains(key) on BST
+    O(mN)
+    For each of the 'm' characters in a key, it could take a maximum 'm' 
+    iterations to compare its size to the children in the tree. This process 
+    must then be repeated 'N' times because the maximum path length from the 
+    root to any key node in an unbalanced binary search tree is N.
+   
+8. Omega() of contains(key) on BST
+    Omega(log2(N))
+    For each of the 'm' characters in a key, the minimum number of times each 
+    must be compared against its children is one iteration. This process must be
+    repeated 'log2(N)' times since the maximum path length from the root node to 
+    any node key is 'log2(N)' for a well-balanced tree.
+    
+Figure 1: Example of a balanced binary search tree. 
+    d
+   / \
+  b   e
+ / \ / \
+a  c,c  f
+Note: There are 7 keys in the tree, so the path length is log2(7) ~ 3.
+
+Figure 2: Example of a severly unbalanced binary search tree. 
+a
+ \
+  b
+   \
+    c
+     \
+      d
+Note: There are 4 keys in the tree, and the path length is N

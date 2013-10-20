@@ -1,0 +1,15 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+
+array-p: array-p.c
+	$(CC) $(CFLAGS) -o array-p array-p.c
+
+clean:
+	rm -f array-p 

@@ -1,0 +1,18 @@
+#-----------------------------------------------#
+#	Makefile for dos systems		#
+#    using a Microsoft Visual C++ compiler	#
+#-----------------------------------------------#
+CC=cl
+#
+# Flags 
+#	AL -- Compile for large model
+#	Zi -- Enable debugging
+#	W1 -- Turn on warnings
+#
+CFLAGS=/AL /Zi /W1
+
+full1.exe: full1.c
+	$(CC) $(CFLAGS) full1.c
+
+clean:
+	erase full1.exe 

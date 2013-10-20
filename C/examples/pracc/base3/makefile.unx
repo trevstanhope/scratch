@@ -1,0 +1,15 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+
+base3: base3.c
+	$(CC) $(CFLAGS) -o base3 base3.c
+
+clean:
+	rm -f base3 

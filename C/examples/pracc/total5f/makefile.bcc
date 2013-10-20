@@ -1,0 +1,18 @@
+#
+# Makefile for Borland's Borland-C++ compiler
+#
+CC=bcc
+#
+# Flags 
+#     	-N  -- Check for stack overflow
+#	-v  -- Enable debugging
+#	-w  -- Turn on all warnings
+#	-ml -- Large model
+#
+CFLAGS=-N -v -w -ml
+
+total5f.exe: total5f.c
+	$(CC) $(CFLAGS) -etotal5f total5f.c
+
+clean:
+	erase total5f.exe

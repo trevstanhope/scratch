@@ -1,0 +1,18 @@
+#
+# Makefile for Borland's Borland-C++ compiler
+#
+CC=bcc
+#
+# Flags 
+#     	-N  -- Check for stack overflow
+#	-v  -- Enable debugging
+#	-w  -- Turn on all warnings
+#	-ml -- Large model
+#
+CFLAGS=-N -v -w -ml
+
+not2.exe: not2.c
+	$(CC) $(CFLAGS) -enot2 not2.c
+
+clean:
+	erase not2.exe

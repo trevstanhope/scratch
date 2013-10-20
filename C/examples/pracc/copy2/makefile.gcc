@@ -1,0 +1,20 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=gcc
+CFLAGS=-g -Wall -D__USE_FIXED_PROTOTYPES__ -ansi
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+#	-Wall	-- Turn on all warnings
+#	-D__USE_FIXED_PROTOTYPES__
+#		-- Force the compiler to use the correct headers
+#	-ansi	-- Don't use GNU extensions.  Stick to ANSI C.
+
+copy2: copy2.c
+	@echo "This compilation will generate warnings"
+	$(CC) $(CFLAGS) -o copy2 copy2.c
+
+clean:
+	rm -f copy2 

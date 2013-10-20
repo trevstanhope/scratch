@@ -1,0 +1,15 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+
+flush2: flush2.c
+	$(CC) $(CFLAGS) -o flush2 flush2.c
+
+clean:
+	rm -f flush2 

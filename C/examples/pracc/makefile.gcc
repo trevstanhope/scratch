@@ -1,0 +1,20 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=gcc
+CFLAGS=-g -Wall -D__USE_FIXED_PROTOTYPES__ -ansi
+
+all:	data.txt data.out
+ 
+data.out: ../ia/hist data.txt
+	../ia/hist data.txt >data.out
+
+data.txt: gen
+	gen >data.txt
+
+gen: gen.c
+	$(CC) $(CFLAGS) -o gen gen.c
+
+clean:
+	rm -f data.txt gen hist.o ia.o

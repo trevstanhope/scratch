@@ -1,0 +1,20 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using an ANSI C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+
+all:	data.txt data.out
+ 
+data.out: ../ia/hist data.txt
+	../ia/hist data.txt >data.out
+
+data.txt: gen
+	gen >data.txt
+
+gen: gen.c
+	$(CC) $(CFLAGS) -o gen gen.c
+
+clean:
+	rm -f data.out data.txt gen hist.o ia.o

@@ -1,0 +1,19 @@
+#-----------------------------------------------#
+#	Makefile for dos systems		#
+#    using a Microsoft Visual C++ compiler	#
+#-----------------------------------------------#
+CC=cl
+#
+# Flags 
+#	AL -- Compile for large model
+#	Zi -- Enable debugging
+#	W1 -- Turn on warnings
+#
+CFLAGS=/AL /Zi /W1
+
+ret.exe: ret.c 
+	@echo "This program will generate an error"
+	$(CC) $(CFLAGS) ret.c 
+
+clean:
+	erase ret.exe 

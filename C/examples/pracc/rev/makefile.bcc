@@ -1,0 +1,18 @@
+#
+# Makefile for Borland's Borland-C++ compiler
+#
+CC=bcc
+#
+# Flags 
+#     	-N  -- Check for stack overflow
+#	-v  -- Enable debugging
+#	-w  -- Turn on all warnings
+#	-ml -- Large model
+#
+CFLAGS=-N -v -w -ml
+
+rev.exe: rev.c
+	$(CC) $(CFLAGS) -erev rev.c
+
+clean:
+	erase rev.exe

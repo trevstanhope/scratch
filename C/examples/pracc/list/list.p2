@@ -1,0 +1,6 @@
+    new_item_ptr = malloc(sizeof(struct item));
+    new_item_ptr->value = value;	/* Set value of item */
+
+    before_ptr->next_ptr = new_item_ptr;
+    new_item_ptr->next_ptr = after_ptr;
+}

@@ -1,0 +1,11 @@
+# MATLAB
+## Contents
+### assignments/
+matlab assignments
+### code/
+development files
+### examples/
+example code
+### notes/
+### templates/
+template files

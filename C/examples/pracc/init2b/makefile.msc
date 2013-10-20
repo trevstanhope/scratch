@@ -1,0 +1,18 @@
+#-----------------------------------------------#
+#	Makefile for dos systems		#
+#    using a Microsoft Visual C++ compiler	#
+#-----------------------------------------------#
+CC=cl
+#
+# Flags 
+#	AL -- Compile for large model
+#	Zi -- Enable debugging
+#	W1 -- Turn on warnings
+#
+CFLAGS=/AL /Zi /W1
+
+init2b.exe: init2b.c
+	$(CC) $(CFLAGS) init2b.c
+
+clean:
+	erase init2b.exe 

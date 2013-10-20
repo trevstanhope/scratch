@@ -1,0 +1,15 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+
+init2a: init2a.c
+	$(CC) $(CFLAGS) -o init2a init2a.c
+
+clean:
+	rm -f init2a 

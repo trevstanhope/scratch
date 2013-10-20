@@ -1,0 +1,15 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+
+tri-sub: tri-sub.c
+	$(CC) $(CFLAGS) -o tri-sub tri-sub.c
+
+clean:
+	rm -f tri-sub 

@@ -1,0 +1,18 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=gcc
+CFLAGS=-g -Wall -D__USE_FIXED_PROTOTYPES__ -ansi
+
+all:	hist
+ 
+hist: hist.o ia.o 
+	$(CC) $(CFLAGS) -o  hist hist.o ia.o
+
+hist.o: hist.c ia.h
+
+ia.o: ia.c ia.h
+
+clean:
+	rm -f hist hist.o ia.o

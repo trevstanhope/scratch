@@ -1,0 +1,18 @@
+#
+# Makefile for Borland's Borland-C++ compiler
+#
+CC=bcc
+#
+# Flags 
+#     	-N  -- Check for stack overflow
+#	-v  -- Enable debugging
+#	-w  -- Turn on all warnings
+#	-ml -- Large model
+#
+CFLAGS=-N -v -w -ml
+
+p_array.exe: p_array.c
+	$(CC) $(CFLAGS) -ep_array p_array.c
+
+clean:
+	erase p_array.exe

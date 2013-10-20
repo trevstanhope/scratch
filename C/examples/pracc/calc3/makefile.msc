@@ -1,0 +1,18 @@
+#-----------------------------------------------#
+#	Makefile for dos systems		#
+#    using a Microsoft Visual C++ compiler	#
+#-----------------------------------------------#
+CC=cl
+#
+# Flags 
+#	AL -- Compile for large model
+#	Zi -- Enable debugging
+#	W1 -- Turn on warnings
+#
+CFLAGS=/AL /Zi /W1
+
+calc3.exe: calc3.c
+	$(CC) $(CFLAGS) calc3.c
+
+clean:
+	erase calc3.exe 

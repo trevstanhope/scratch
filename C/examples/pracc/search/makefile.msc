@@ -1,0 +1,34 @@
+#-----------------------------------------------#
+#	Makefile for dos systems		#
+#    using a Microsoft Visual C++ compiler	#
+#-----------------------------------------------#
+CC=cl
+#
+# Flags 
+#	AL -- Compile for large model
+#	Zi -- Enable debugging
+#	W1 -- Turn on warnings
+#
+CFLAGS=/AL /Zi /W1
+
+PROGS = search1.exe search2.exe search3.exe search4.exe
+
+all: 	$(PROGS) 
+
+search1.exe: search1.c
+	$(CC) $(CFLAGS) search1.c
+
+search2.exe: search2.c
+	$(CC) $(CFLAGS) search2.c
+
+search3.exe: search3.c
+	$(CC) $(CFLAGS) search3.c
+
+search4.exe: search4.c
+	$(CC) $(CFLAGS) search4.c
+
+clean:
+	del search1.exe
+	del search2.exe
+	del search3.exe
+	del search4.exe

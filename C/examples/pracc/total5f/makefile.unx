@@ -1,0 +1,15 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+
+total5f: total5f.c
+	$(CC) $(CFLAGS) -o total5f total5f.c
+
+clean:
+	rm -f total5f 

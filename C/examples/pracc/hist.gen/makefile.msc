@@ -1,0 +1,29 @@
+#-----------------------------------------------#
+#	Makefile for dos systems		#
+#    using a Microsoft Visual C++ compiler	#
+#-----------------------------------------------#
+CC=cl
+#
+# Flags 
+#	AL -- Compile for large model
+#	Zi -- Enable debugging
+#	W1 -- Turn on warnings
+#
+CFLAGS=/AL /Zi /W1
+
+all:	data.txt data.out
+ 
+data.out: ..\ia\hist.exe data.txt
+	..\ia\hist data.txt >data.out
+
+data.txt: gen.exe
+	gen >data.txt
+
+gen.exe: gen.c
+	$(CC) $(CFLAGS) gen.c
+
+clean:
+	del data.txt 
+	del gen.exe 
+	del hist.obj 
+	del ia.obj

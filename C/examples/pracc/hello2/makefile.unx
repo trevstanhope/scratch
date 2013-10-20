@@ -1,0 +1,15 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+
+hello2: hello2.c
+	$(CC) $(CFLAGS) -o hello2 hello2.c
+
+clean:
+	rm -f hello2 

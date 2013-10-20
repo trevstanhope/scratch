@@ -1,0 +1,331 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>trevorstanhope_project_1</title><meta name="generator" content="MATLAB 7.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2012-09-26"><meta name="DC.source" content="trevorstanhope_project_1.m"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">trevorstanhope_project_1.m</a></li><li><a href="#2">Problem 1, Overview</a></li><li><a href="#3">Problem 2, Basic Analysis</a></li><li><a href="#4">Problem 3, Diagonalization</a></li><li><a href="#5">Problem 4, Cayley-Hamilton Theorem</a></li></ul></div><h2>trevorstanhope_project_1.m<a name="1"></a></h2><p>Trevor Stanhope, ID260399515</p><pre class="codeinput"><span class="comment">% house keeping</span>
+clc;
+clear <span class="string">all</span>;
+</pre><h2>Problem 1, Overview<a name="2"></a></h2><p>example matrices</p><pre class="codeinput">A = [8, 11, 2, 8; 0, -7, 2, -1; -3, -7, 2, 1; 1, 1, 2, 4];
+B = [1, -2, 0, 5; 0, 7, 1, 5; 0, 4, 4, 0; 0, 0, 0, 2];
+
+<span class="comment">% 1a, determinants of A and B</span>
+det(A);
+det(B);
+
+<span class="comment">% 1b, deteminants of operational combinations of A and B</span>
+det(A+B); <span class="comment">% determinant is zero</span>
+det(A-B);
+det(A*B);
+det(inv(A));
+det(transpose(B));
+
+<span class="comment">% 1c, which matrices are non-invertible?</span>
+disp(<span class="string">'[A-B] is not invertible because det(A-B) = 0, making it a singular matrix'</span>);
+
+<span class="comment">% 1d, which could we find with only det(A) and det(B)?</span>
+disp(<span class="string">'If all we had was det(A) and det(B):\n'</span>);
+disp(<span class="string">'We could find det(AB) because det(A)*det(B) = det(AB).\n'</span>);
+disp(<span class="string">'We could find det(A^-1) because 1/det(A) = det(A^-1).\n'</span>);
+disp(<span class="string">'We could find det(A^T) because det(A) = det(A^T).\n'</span>);
+
+<span class="comment">% 1e, find b</span>
+b = roots(poly(B)); <span class="comment">% array of eigenvalues</span>
+
+<span class="comment">% 1f, find P and D</span>
+n = length(b); <span class="comment">% number of eigenvalues</span>
+[P D] = eig(B);
+<span class="keyword">if</span> rank(P) == length(b)
+    D = inv(P)*B*P; <span class="comment">% diagonalize A</span>
+    disp(<span class="string">'Matrix B:\n'</span>);
+    disp(B);
+    disp(<span class="string">'Matrix P:\n'</span>);
+    disp(P);
+    disp(<span class="string">'Matrix D:\n'</span>)
+    disp(D);
+<span class="keyword">else</span>
+    fprintf(<span class="string">'There ARE NOT n linearly independent eigenvectors.\n'</span>);
+<span class="keyword">end</span>
+
+<span class="comment">% 1g, see trevorstanhope_project_1.pdf for comparison</span>
+x = P(:,2);
+disp(x);
+result = B*x - 8*x;
+disp(result);
+</pre><pre class="codeoutput">[A-B] is not invertible because det(A-B) = 0, making it a singular matrix
+If all we had was det(A) and det(B):\n
+We could find det(AB) because det(A)*det(B) = det(AB).\n
+We could find det(A^-1) because 1/det(A) = det(A^-1).\n
+We could find det(A^T) because det(A) = det(A^T).\n
+Matrix B:\n
+     1    -2     0     5
+     0     7     1     5
+     0     4     4     0
+     0     0     0     2
+
+Matrix P:\n
+    1.0000   -0.1980    0.2357    0.9074
+         0    0.6931   -0.2357   -0.1815
+         0    0.6931    0.9428    0.3630
+         0         0         0    0.1089
+
+Matrix D:\n
+    1.0000   -0.0000   -0.0000   -0.0000
+         0    8.0000         0    0.0000
+         0    0.0000    3.0000         0
+         0         0         0    2.0000
+
+   -0.1980
+    0.6931
+    0.6931
+         0
+
+     0
+     0
+     0
+     0
+
+</pre><h2>Problem 2, Basic Analysis<a name="3"></a></h2><p>example matrices</p><pre class="codeinput">A = [-9, -3, -16; 13, 7, 16; 3, 3, 10];
+B = [0, 0, 2; 1, 0, 1; 0, 1, 1];
+
+<span class="comment">% test with eigs()</span>
+<span class="comment">% A</span>
+disp(eigs(A));
+disp(roots(poly(A)));
+fprintf(<span class="string">'eigs(A) IS the same as roots(poly(A))\n'</span>);
+
+<span class="comment">% B</span>
+disp(eigs(B));
+roots(poly(B));
+fprintf(<span class="string">'eigs(B) IS the same as roots(poly(B))'</span>);
+</pre><pre class="codeoutput">   10.0000
+   -6.0000
+    4.0000
+
+   -6.0000
+   10.0000
+    4.0000
+
+eigs(A) IS the same as roots(poly(A))
+   2.0000          
+  -0.5000 - 0.8660i
+  -0.5000 + 0.8660i
+
+eigs(B) IS the same as roots(poly(B))</pre><h2>Problem 3, Diagonalization<a name="4"></a></h2><p>example matrix</p><pre class="codeinput">A = [9, 1, 1; 1, 9, 1; 1, 1, 9];
+
+<span class="comment">% 3a</span>
+a = roots(poly(A)); <span class="comment">% vector of eigenvalues</span>
+
+[V D] = eig(A); <span class="comment">% find the</span>
+<span class="keyword">if</span> rank(V) == length(a)
+    D = inv(V)*A*V; <span class="comment">% diagonalize A</span>
+<span class="keyword">else</span>
+    fprintf(<span class="string">'There ARE NOT n linearly independent eigenvectors.\n'</span>);
+<span class="keyword">end</span>
+
+test = V*D*inv(V); <span class="comment">% check reverse</span>
+<span class="keyword">if</span> eq(D, test) <span class="comment">% test if they are equivalent</span>
+    disp(D);
+    disp(test);
+    disp(<span class="string">'The diagonal matrix D can be undiagonalized back to A.\n'</span>)
+    disp(<span class="string">'D = inv(V)*A*V and A = V*D*inv(V).\n'</span>)
+<span class="keyword">end</span>
+
+<span class="comment">% 3b</span>
+<span class="keyword">if</span> ((A^5) == (V*(D^5)*inv(V))) <span class="comment">%test if they are equivalent</span>
+    disp(A)
+    fprintf(<span class="string">'A^n is equal to V*D^n*inv(V)\n'</span>);
+<span class="keyword">end</span>
+</pre><h2>Problem 4, Cayley-Hamilton Theorem<a name="5"></a></h2><p>example matrix</p><pre class="codeinput">A = [5, 7, -5; 0, 4, -1; 2, 8, -3]
+
+<span class="comment">% 4a, see trevorstanhope_project_1.pdf</span>
+<span class="comment">% 4b, see trevorstanhope_project_1.pdf</span>
+<span class="comment">% 4c</span>
+disp(inv(A));
+</pre><pre class="codeoutput">
+A =
+
+     5     7    -5
+     0     4    -1
+     2     8    -3
+
+   -0.6667   -3.1667    2.1667
+   -0.3333   -0.8333    0.8333
+   -1.3333   -4.3333    3.3333
+
+</pre><p class="footer"><br>
+      Published with MATLAB&reg; 7.12<br></p></div><!--
+##### SOURCE BEGIN #####
+%% trevorstanhope_project_1.m
+% Trevor Stanhope, ID260399515
+
+% house keeping
+clc;
+clear all;
+
+%% Problem 1, Overview
+% example matrices
+A = [8, 11, 2, 8; 0, -7, 2, -1; -3, -7, 2, 1; 1, 1, 2, 4];
+B = [1, -2, 0, 5; 0, 7, 1, 5; 0, 4, 4, 0; 0, 0, 0, 2];
+
+% 1a, determinants of A and B
+det(A);
+det(B);
+
+% 1b, deteminants of operational combinations of A and B
+det(A+B); % determinant is zero
+det(A-B);
+det(A*B);
+det(inv(A));
+det(transpose(B));
+
+% 1c, which matrices are non-invertible?
+disp('[A-B] is not invertible because det(A-B) = 0, making it a singular matrix');
+
+% 1d, which could we find with only det(A) and det(B)?
+disp('If all we had was det(A) and det(B):\n');
+disp('We could find det(AB) because det(A)*det(B) = det(AB).\n');
+disp('We could find det(A^-1) because 1/det(A) = det(A^-1).\n');
+disp('We could find det(A^T) because det(A) = det(A^T).\n');
+
+% 1e, find b
+b = roots(poly(B)); % array of eigenvalues
+
+% 1f, find P and D 
+n = length(b); % number of eigenvalues
+[P D] = eig(B);
+if rank(P) == length(b)
+    D = inv(P)*B*P; % diagonalize A
+    disp('Matrix B:\n');
+    disp(B);
+    disp('Matrix P:\n');
+    disp(P);
+    disp('Matrix D:\n')
+    disp(D);
+else
+    fprintf('There ARE NOT n linearly independent eigenvectors.\n');
+end
+
+% 1g, see trevorstanhope_project_1.pdf for comparison
+x = P(:,2);
+disp(x);
+result = B*x - 8*x;
+disp(result);
+
+%% Problem 2, Basic Analysis
+% example matrices
+A = [-9, -3, -16; 13, 7, 16; 3, 3, 10];
+B = [0, 0, 2; 1, 0, 1; 0, 1, 1];
+
+% test with eigs()
+% A
+disp(eigs(A));
+disp(roots(poly(A)));
+fprintf('eigs(A) IS the same as roots(poly(A))\n');
+
+% B
+disp(eigs(B));
+roots(poly(B));
+fprintf('eigs(B) IS the same as roots(poly(B))');
+
+%% Problem 3, Diagonalization
+% example matrix
+A = [9, 1, 1; 1, 9, 1; 1, 1, 9];
+
+% 3a
+a = roots(poly(A)); % vector of eigenvalues
+
+[V D] = eig(A); % find the 
+if rank(V) == length(a)
+    D = inv(V)*A*V; % diagonalize A
+else
+    fprintf('There ARE NOT n linearly independent eigenvectors.\n');
+end
+
+test = V*D*inv(V); % check reverse
+if eq(D, test) % test if they are equivalent
+    disp(D);
+    disp(test);
+    disp('The diagonal matrix D can be undiagonalized back to A.\n')
+    disp('D = inv(V)*A*V and A = V*D*inv(V).\n')
+end
+
+% 3b
+if ((A^5) == (V*(D^5)*inv(V))) %test if they are equivalent
+    disp(A)
+    fprintf('A^n is equal to V*D^n*inv(V)\n');  
+end
+
+%% Problem 4, Cayley-Hamilton Theorem
+% example matrix
+A = [5, 7, -5; 0, 4, -1; 2, 8, -3]
+
+% 4a, see trevorstanhope_project_1.pdf
+% 4b, see trevorstanhope_project_1.pdf
+% 4c
+disp(inv(A));
+
+
+
+
+##### SOURCE END #####
+--></body></html>

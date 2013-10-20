@@ -1,0 +1,31 @@
+Mstat	stat.c	/^int main(int argc, char *argv[])/
+Mtest	test.c	/^int main() /
+bc_eof	stat.c	/^static void bc_eof(void) {/
+bc_init	stat.c	/^void bc_init(void) { /
+bc_line_start	stat.c	/^static void bc_line_start(void) {/
+bc_take_token	stat.c	/^void bc_take_token(enum TOKEN_TYPE token) {/
+cc_eof	stat.c	/^static void cc_eof(void) {/
+cc_init	stat.c	/^static void cc_init(void) { /
+cc_line_start	stat.c	/^static void cc_line_start(void)/
+cc_take_token	stat.c	/^void cc_take_token(enum TOKEN_TYPE token) {/
+do_file	stat.c	/^static void do_file(const char *const name)/
+fill_range	ch_type.c	/^static void fill_range(int start, int end, enum CH/
+get_char_type	ch_type.c	/^enum CHAR_TYPE get_char_type(int ch) {/
+in_close	in_file.c	/^void in_close(void) /
+in_cur_char	in_file.c	/^int in_cur_char(void) /
+in_flush	in_file.c	/^void in_flush(void)/
+in_next_char	in_file.c	/^int in_next_char(void)/
+in_open	in_file.c	/^int in_open(const char name[])/
+in_read_char	in_file.c	/^void in_read_char(void)/
+init_char_type	ch_type.c	/^static void init_char_type(void)/
+is_char_type	ch_type.c	/^int is_char_type(int ch, enum CHAR_TYPE kind)/
+lc_eof	stat.c	/^static void lc_eof(void) {/
+lc_init	stat.c	/^static void lc_init(void)/
+lc_line_start	stat.c	/^static void lc_line_start(void) {/
+lc_take_token	stat.c	/^static void lc_take_token(enum TOKEN_TYPE token) {/
+next_token	token.c	/^enum TOKEN_TYPE next_token(void)/
+pc_eof	stat.c	/^void pc_eof(void) {/
+pc_init	stat.c	/^void pc_init(void) { /
+pc_line_start	stat.c	/^static void pc_line_start(void) {/
+pc_take_token	stat.c	/^void pc_take_token(enum TOKEN_TYPE token) {/
+read_comment	token.c	/^static enum TOKEN_TYPE read_comment(void)/

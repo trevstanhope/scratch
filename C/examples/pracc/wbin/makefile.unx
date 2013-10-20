@@ -1,0 +1,15 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+
+wbin: wbin.c
+	$(CC) $(CFLAGS) -o wbin wbin.c
+
+clean:
+	rm -f wbin 

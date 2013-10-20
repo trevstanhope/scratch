@@ -1,0 +1,71 @@
+  1 (0  {0  /*-*/
+  2 (0  {0  /********************************************************
+  3 (0  {0   * Name: Calculator (Version 2)                         *
+  4 (0  {0   *                                                      *
+  5 (0  {0   * Purpose:                                             *
+  6 (0  {0   *      Act like a simple 4 function calculator.        *
+  7 (0  {0   *                                                      *
+  8 (0  {0   * Usage:                                               *
+  9 (0  {0   *      Run the program.                                *
+ 10 (0  {0   *      Type in an operator (+ - * /) and a number.     *
+ 11 (0  {0   *      The operaton will be performed on the current   *
+ 12 (0  {0   *      result and a new result displayed.              *
+ 13 (0  {0   *                                                      *
+ 14 (0  {0   *      Type 'Q' to quit.                               *
+ 15 (0  {0   *                                                      *
+ 16 (0  {0   * Notes: Like version 1 but written with a switch      *
+ 17 (0  {0   *      statement.                                      *
+ 18 (0  {0   ********************************************************/
+ 19 (0  {0  /*+*/
+ 20 (0  {0  #include <stdio.h>
+ 21 (0  {0  char  line[100];   /* line of text from input */
+ 22 (0  {0  
+ 23 (0  {0  int   result;      /* the result of the calculations */
+ 24 (0  {0  char  operator;    /* operator the user specified */
+ 25 (0  {0  int   value;       /* value specified after the operator */
+ 26 (0  {0  int main()
+ 27 (0  {1  {
+ 28 (0  {1      result = 0;    /* initialize the result */
+ 29 (0  {1  
+ 30 (0  {1      /* loop forever (or until break reached) */
+ 31 (0  {2      while (1) {
+ 32 (0  {2          printf("Result: %d\n", result);
+ 33 (0  {2          printf("Enter operator and number: ");
+ 34 (0  {2  
+ 35 (0  {2          fgets(line, sizeof(line), stdin);
+ 36 (0  {2          sscanf(line, "%c %d", &operator, &value);
+ 37 (0  {2  
+ 38 (0  {2          if ((operator == 'q') || (operator == 'Q'))
+ 39 (0  {2              break;
+ 40 (0  {3          switch (operator) {
+ 41 (0  {3          case '+':
+ 42 (0  {3              result += value;
+ 43 (0  {3              break;
+ 44 (0  {3          case '-':
+ 45 (0  {3              result -= value;
+ 46 (0  {3              break;
+ 47 (0  {3          case '*':
+ 48 (0  {3              result *= value;
+ 49 (0  {3              break;
+ 50 (0  {3          case '/':
+ 51 (0  {4              if (value == 0) {
+ 52 (0  {4                  printf("Error:Divide by zero\n");
+ 53 (0  {4                  printf("   operation ignored\n");
+ 54 (0  {3              } else
+ 55 (0  {3                  result /= value;
+ 56 (0  {3              break;
+ 57 (0  {3          default:
+ 58 (0  {3              printf("Unknown operator %c\n", operator);
+ 59 (0  {3              break;
+ 60 (0  {2          }
+ 61 (0  {1      }
+ 62 (0  {1      return (0);
+ 63 (0  {0  }
+Total number of lines: 63
+Maximum nesting of () : 2
+Maximum nesting of {} : 4
+Number of blank lines .................4
+Number of comment only lines ..........20
+Number of code only lines .............34
+Number of lines with code and comments 5
+Comment to code ratio 64.1%

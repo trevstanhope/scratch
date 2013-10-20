@@ -1,0 +1,33 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=gcc
+CFLAGS=-g -Wall -D__USE_FIXED_PROTOTYPES__ -ansi
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+#	-Wall	-- Turn on all warnings
+#	-D__USE_FIXED_PROTOTYPES__
+#		-- Force the compiler to use the correct headers
+#	-ansi	-- Don't use GNU extensions.  Stick to ANSI C.
+
+PROGS = search1 search2 search3 search4
+
+all: 	$(PROGS) 
+
+search1: search1.c
+	@echo "This compile generates a warning"
+	$(CC) $(CFLAGS) -o search1 search1.c
+
+search2: search2.c
+	$(CC) $(CFLAGS) -o search2 search2.c
+
+search3: search3.c
+	$(CC) $(CFLAGS) -o search3 search3.c
+
+search4: search4.c
+	$(CC) $(CFLAGS) -o search4 search4.c
+
+clean:
+	rm -f $(PROGS)

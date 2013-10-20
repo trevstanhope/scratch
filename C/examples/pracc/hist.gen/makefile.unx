@@ -1,0 +1,15 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+
+hist.gen: hist.gen.c
+	$(CC) $(CFLAGS) -o hist.gen hist.gen.c
+
+clean:
+	rm -f hist.gen 

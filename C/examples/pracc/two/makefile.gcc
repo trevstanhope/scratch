@@ -1,0 +1,20 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=gcc
+CFLAGS=-g -D__USE_FIXED_PROTOTYPES__ -ansi
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+#	-Wall	-- Turn on all warnings
+#		(removed because it gives away the answer)
+#	-D__USE_FIXED_PROTOTYPES__
+#		-- Force the compiler to use the correct headers
+#	-ansi	-- Don't use GNU extensions.  Stick to ANSI C.
+
+two: two.c
+	$(CC) $(CFLAGS) -o two two.c
+
+clean:
+	rm -f two 

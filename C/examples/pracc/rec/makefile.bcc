@@ -1,0 +1,19 @@
+#
+# Makefile for Borland's Borland-C++ compiler
+#
+CC=bcc
+#
+# Flags 
+#     	-N  -- Check for stack overflow
+#	-v  -- Enable debugging
+#	-w  -- Turn on all warnings
+#	-ml -- Large model
+#
+CFLAGS=-N -v -w -ml
+
+rec.exe: rec.c
+	@echo "This program will fail to compile"
+	$(CC) $(CFLAGS) -erec rec.c
+
+clean:
+	erase rec.exe

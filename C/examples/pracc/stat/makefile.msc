@@ -1,0 +1,45 @@
+#
+# Makefile for Microsoft Visual C++
+#
+CC=cl
+#
+# Flags 
+#	AL -- Compile for large model
+#	Zi -- Enable debugging
+#	W1 -- Turn on warnings
+#
+CFLAGS=/AL /Zi /W1
+OBJS= stat.obj ch_type.obj token.obj in_file.obj
+
+all: stat.out stat.exe test.out
+
+test.out: test.c stat.exe
+	stat test.c >test.out
+
+# This generates a test output based on another example
+# in this book.
+stat.out: stat.exe
+	stat ..\calc3\calc3.c >stat.out
+
+stat.exe: $(OBJS)
+	$(CC) $(CCFLAGS)  $(OBJS)
+
+stat.obj: stat.c token.h
+	$(CC) $(CCFLAGS) -c stat.c
+
+ch_type.obj: ch_type.c ch_type.h
+	$(CC) $(CCFLAGS) -c ch_type.c
+
+token.obj: token.c token.h ch_type.h
+	$(CC) $(CCFLAGS) -c token.c
+
+in_file.obj: in_file.c 
+	$(CC) $(CCFLAGS) -c in_file.c
+
+
+clean:
+	erase stat.exe 
+	erase stat.obj 
+	erase ch_type.obj 
+	erase token.obj
+	erase in_file.obj

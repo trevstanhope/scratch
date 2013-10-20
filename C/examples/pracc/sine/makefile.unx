@@ -1,0 +1,15 @@
+#-----------------------------------------------#
+#	Makefile for unix systems		#
+#    using a GNU C compiler			#
+#-----------------------------------------------#
+CC=cc
+CFLAGS=-g 
+#
+# Compiler flags:
+#	-g	-- Enable debugging
+
+sine: sine.c
+	$(CC) $(CFLAGS) -o sine sine.c -lm
+
+clean:
+	rm -f sine 

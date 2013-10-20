@@ -1,0 +1,38 @@
+  1 (0  {0  /* This is a single line comment */
+  2 (0  {0  /* 
+  3 (0  {0   * This is a mult-line
+  4 (0  {0   * comment.
+  5 (0  {0   */
+  6 (0  {0  int main() 
+  7 (0  {1  {
+  8 (0  {1      /* A procedure */
+  9 (0  {1      int i;      /* Comment / code line */
+ 10 (0  {1      char foo[10];
+ 11 (0  {1  
+ 12 (0  {1      strcpy(foo, "abc");         /* String */
+ 13 (0  {1      strcpy(foo, "a\"bc");       /* String with special character */
+ 14 (0  {1  
+ 15 (0  {1      foo[0] = 'a';               /* Character */
+ 16 (0  {1      foo[1] = '\'';              /* Character with escape */
+ 17 (0  {1  
+ 18 (0  {1      i = 3 / 2;                  /* Slash that's not a commment */
+ 19 (0  {1      i = 3;                      /* Normal number */
+ 20 (0  {1      i = 0x123ABC;               /* Hex number */
+ 21 (0  {1  
+ 22 (1  {1      i = ((1 + 2) *              /* Nested () */
+ 23 (0  {1           (3 + 4));
+ 24 (0  {1  
+ 25 (0  {2      {
+ 26 (0  {2          int j;                  /* Nested {} */
+ 27 (0  {1      }
+ 28 (0  {1      return (0);
+ 29 (0  {0  }
+ 30 (0  {0  
+Total number of lines: 30
+Maximum nesting of () : 2
+Maximum nesting of {} : 2
+Number of blank lines .................6
+Number of comment only lines ..........6
+Number of code only lines .............8
+Number of lines with code and comments 10
+Comment to code ratio 88.9%
