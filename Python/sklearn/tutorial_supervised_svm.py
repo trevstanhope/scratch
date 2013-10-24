@@ -12,7 +12,7 @@ iris = datasets.load_iris()
 # Create support vector classifiers
 svc_linear = svm.SVC(kernel='linear') # LINEAR
 svc_poly = svc = svm.SVC(kernel='poly', degree=3) # POLYNOMIAL
-svc_rbf = svm.SVC(kernel='linear') # RADIAL BASIS FUNCTION
+svc_rbf = svm.SVC(kernel='rbf') # RADIAL BASIS FUNCTION
 
 # Train model
 svc_linear.fit(iris.data, iris.target)   
