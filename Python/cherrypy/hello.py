@@ -3,8 +3,9 @@ import cherrypy
 
 class HelloWorld:
     def index(self):
-      return "Hello world!"
+      return "test"
     index.exposed = True
 
 cherrypy.quickstart(HelloWorld())
+
 
