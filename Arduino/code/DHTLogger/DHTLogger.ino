@@ -14,11 +14,11 @@
 
 /* --- Pins --- */
 #define SD_PIN 10
-#define DHT_INTERNAL_PIN A0
-#define DHT_EXTERNAL_PIN A1
+#define DHT_INTERNAL_PIN 3
+#define DHT_EXTERNAL_PIN 7
 
 /* --- Values --- */
-#define DHT_TYPE DHT11
+#define DHT_TYPE DHT22
 #define BAUD 9600
 #define CHARS 8
 #define BUFFER 128
@@ -63,11 +63,18 @@ void setup() {
 /* --- Loop --- */
 void loop() {
   TIME++;
-  dtostrf(get_ext_temp(), DIGITS, PRECISION, EXT_H); 
-  dtostrf(get_ext_humidity(), DIGITS, PRECISION, EXT_T);
+  dtostrf(get_ext_temp(), DIGITS, PRECISION, EXT_T); 
+  delay(1);
+  dtostrf(get_ext_humidity(), DIGITS, PRECISION, EXT_H);
+    delay(1);
   dtostrf(get_int_temp(), DIGITS, PRECISION, INT_T);
+   delay(1);
+
   dtostrf(get_int_humidity(), DIGITS, PRECISION, INT_H);
-  sprintf(CSV, "%d,%s,%s,%s,%s",TIME,INT_H,EXT_T,INT_H,EXT_H);
+    delay(1);
+
+  sprintf(CSV, "%d,%s,%s,%s,%s",TIME, INT_T, EXT_T, INT_H, EXT_H);
+  Serial.println(CSV);
   File datafile = SD.open("datalog.txt", FILE_WRITE);
   if (datafile) {
     datafile.println(CSV);
@@ -90,7 +97,7 @@ float get_int_humidity() {
 
 // Internal Temperature
 float get_int_temp() {
-  float val = INT_DHT.readTemperature(); //  Serial.println(val);
+  float val = INT_DHT.readTemperature();
   if (isnan(val)) {
     return 0;
   }
