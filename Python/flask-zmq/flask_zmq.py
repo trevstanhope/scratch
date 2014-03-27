@@ -13,7 +13,6 @@ __version__ = '0.1.1'
 
 import zmq
 
-
 class ZMQ(object):
 
     def __init__(self, app=None):

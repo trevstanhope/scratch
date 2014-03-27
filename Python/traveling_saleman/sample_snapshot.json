@@ -1,0 +1,15 @@
+{
+    "assumed_x_position" : "",
+    "assumed_y_position" : "",
+    "assumed_orientation" : "",
+    "objects" : 
+    [
+        [0,10],
+        [110,120],
+        [140,165],
+        [240, 260], 
+        [300, 315],
+        [600, 630]
+    ]
+}
+        
