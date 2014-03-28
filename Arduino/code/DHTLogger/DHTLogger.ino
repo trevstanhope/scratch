@@ -1,10 +1,7 @@
 /* 
-  HiveMonitor
+  DHTLogger
   Developed by Trevor Stanhope
   DAQ controller for hive sensor monitoring.
-
-  TODO:
-  - SD logging
 */
 
 /* --- Libraries --- */
@@ -14,8 +11,8 @@
 
 /* --- Pins --- */
 #define SD_PIN 10
-#define DHT_INTERNAL_PIN 3
-#define DHT_EXTERNAL_PIN 7
+#define DHT_INTERNAL_PIN A0
+#define DHT_EXTERNAL_PIN A1
 
 /* --- Values --- */
 #define DHT_TYPE DHT22
@@ -64,15 +61,9 @@ void setup() {
 void loop() {
   TIME++;
   dtostrf(get_ext_temp(), DIGITS, PRECISION, EXT_T); 
-  delay(1);
   dtostrf(get_ext_humidity(), DIGITS, PRECISION, EXT_H);
-    delay(1);
   dtostrf(get_int_temp(), DIGITS, PRECISION, INT_T);
-   delay(1);
-
   dtostrf(get_int_humidity(), DIGITS, PRECISION, INT_H);
-    delay(1);
-
   sprintf(CSV, "%d,%s,%s,%s,%s",TIME, INT_T, EXT_T, INT_H, EXT_H);
   Serial.println(CSV);
   File datafile = SD.open("datalog.txt", FILE_WRITE);
