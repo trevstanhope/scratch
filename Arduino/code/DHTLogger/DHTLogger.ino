@@ -1,7 +1,7 @@
 /* 
   DHTLogger
   Developed by Trevor Stanhope
-  DAQ controller for hive sensor monitoring.
+  Data logger for DHT sensors
 */
 
 /* --- Libraries --- */
@@ -22,6 +22,7 @@
 #define DIGITS 4
 #define PRECISION 2
 #define INTERVAL 1000
+#define TIMEOUT 1
 
 /* --- Functions --- */
 float get_int_temp(void);
@@ -49,6 +50,7 @@ int TIME = 0; // seconds on
 /* --- Setup --- */
 void setup() {
   Serial.begin(BAUD);
+  Serial.setTimeout(TIMEOUT);
   pinMode(SD_PIN, OUTPUT);
   if (!SD.begin(SD_PIN)) {
     return;
